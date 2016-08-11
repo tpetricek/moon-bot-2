@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Moon Bot: Cortana's stupid little brother</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-2.1.4.js" 
+    integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>  
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Inconsolata|Kreon:300,400,700|Roboto:400,700,400italic);
+    body {
+      background:#161616;
+      font-family:Roboto;
+      color:#d0d0d0;
+      font-size:19pt;
+    }
+    h1 {
+      font:70pt Kreon;
+      padding-right:50px;
+    }
+    img {
+      vertical-align:middle;
+      width:250px;
+      margin-right:30px;
+    }
+    section {
+      max-width:800px;
+      margin:0px auto 0px auto;
+    }
+    input {
+      font-size:20pt;
+      border:2px solid #808080;
+      padding:6px;
+      width:90%;
+      color:#d0d0d0;
+      background:#404040;
+    }
+    a {
+      color:#d0d0d0;
+    }
+    a:hover {
+      color:white;
+    }
+    #out {
+      margin-top:30px;
+    }
+    ::-webkit-input-placeholder { color: #585858; } 
+    :-moz-placeholder { color: #585858; } 
+    ::-moz-placeholder { color: #585858; }
+    :-ms-input-placeholder { color: #585858; }
+  </style>
+  <script type="text/javascript">
+    function update() {
+      var q = encodeURIComponent($("#query").val());
+      $.ajax("/query?" + q).done(function(res) {
+        document.getElementById("out").innerHTML = res;
+      });
+      return false;
+    }
+  </script>
+</head>
+<body>
+  <section>
+    <h1><img src="moon.jpg" /> Moon Bot</h1>  
+    <p>Hello, I'm Moon Bot! Cortana's stupid little brother. Ask me anything!</p>
+    <form id="frm" onsubmit="return update();">
+      <input type="text" autocomplete="off" name="query" placeholder="Your question?" id="query" />
+    </form>
+    <div id="out"></div>
+  </section>
+</body>
+</html>
